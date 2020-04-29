@@ -12,7 +12,7 @@ function solve(input) {
                     if (sec.length > first.length) {
                         let temp = first;
                         first = sec;
-                        sec = first;
+                        sec = temp;
                     }
                     if (first.includes(sec) && sec.length >= 6) {
                         if (sec.length >= 6 && sec.length <= 9) {
@@ -31,10 +31,13 @@ function solve(input) {
                 console.log(`ticket "${line}" - no match`)
             }
         }
+        else if (line.length < 1) {
+
+        }
         else {
             console.log('invalid ticket');
         }
     }
 }
 
-solve(['@@@@@@@123@@@@@@1234,       ######4123@@@@@@1234,$$$$$$$$$$##########']);
+solve(['####################']);
