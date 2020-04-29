@@ -1,5 +1,5 @@
 function solve(input) {
-    let pattern = /(?<cash>[\@\#\^\$]+)/g;
+    let pattern = /[@]{6,10}|[#]{6,10}|[$]{6,10}|[\^]{6,10}/g;
     let lines = input[0].split(/[\,]/g).map(line => line.trim());
     for (const line of lines) {
         if (line.length === 20) {
@@ -26,13 +26,13 @@ function solve(input) {
                         console.log(`ticket "${line}" - no match`)
                     }
                 }
+                else {
+                    console.log(`ticket "${line}" - no match`)
+                }
             }
             else {
                 console.log(`ticket "${line}" - no match`)
             }
-        }
-        else if (line.length < 1) {
-
         }
         else {
             console.log('invalid ticket');
@@ -40,4 +40,5 @@ function solve(input) {
     }
 }
 
-solve(['####################']);
+solve(['######@#############']);
+
