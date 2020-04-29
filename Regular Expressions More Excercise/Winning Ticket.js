@@ -1,24 +1,40 @@
 function solve(input) {
-    let pattern = /\w*(?<cash>[\@\#\^\$]+)\w*\k<cash>\w*/g;
-    let lines = input[0].trim().split(/[\,]/g);
+    let pattern = /(?<cash>[\@\#\^\$]+)/g;
+    let lines = input[0].split(/[\,]/g).map(line => line.trim());
     for (const line of lines) {
-        if (valid = pattern.exec(line)) {
-
-            if (valid.groups['cash'].length === 10) {
-                console.log(`ticket "${valid[0]}" - ${valid.groups['cash'].length}${valid.groups['cash'][0]} Jackpot!`)
+        if (line.length === 20) {
+            let firstHalf = line.slice(0, line.length / 2);
+            let secHalf = line.slice(line.length / 2, line.length);
+            if (valid = firstHalf.match(pattern)) {
+                if (validSec = secHalf.match(pattern)) {
+                    let first = valid.join('');
+                    let sec = validSec.join('');
+                    if (sec.length > first.length) {
+                        let temp = first;
+                        first = sec;
+                        sec = first;
+                    }
+                    if (first.includes(sec) && sec.length >= 6) {
+                        if (sec.length >= 6 && sec.length <= 9) {
+                            console.log(`ticket "${line}" - ${sec.length}${sec[0]}`);
+                        }
+                        else if (sec.length === 10) {
+                            console.log(`ticket "${line}" - ${sec.length}${sec[0]} Jackpot!`);
+                        }
+                    }
+                    else {
+                        console.log(`ticket "${line}" - no match`)
+                    }
+                }
             }
-            else if (valid.groups['cash'].length >= 6 && valid.groups['cash'].length <= 9) {
-                console.log(`ticket "${valid[0]}" - ${valid.groups['cash'].length}${valid.groups['cash'][0]}`)
+            else {
+                console.log(`ticket "${line}" - no match`)
             }
-
-        }
-        else if (line.trim().length === 20) {
-            console.log(`ticket "${line.trim()}" - no match`)
         }
         else {
-            console.log(`invalid ticket`);
+            console.log('invalid ticket');
         }
     }
 }
 
-solve(['$$$$$$$$$$$$$$$$$$$$   ,   aabb  ,  das, is    th@@@@@@eemo@@@@@@ey, validticketnomatch:(, @@@@@@@123@@@@@@1234,######4123@@@@@@1234']);
+solve(['@@@@@@@123@@@@@@1234,       ######4123@@@@@@1234,$$$$$$$$$$##########']);
