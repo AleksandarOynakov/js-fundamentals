@@ -1,31 +1,25 @@
 function solve(inputArray) {
-    let countAdd = 1;
-    let result = [];
-    let resultString = "";
-    let empty = false;
-    for (let i = 0; i < inputArray.length; i++) {
-        if(inputArray[i] === 'add'){
-            result.push(countAdd);
-            countAdd++;
-        }
-        else{
-            if(result.length !== 0){
-                result.pop();
-            }
-            else{
-                resultString = `Empty `;
+    let count = 1;
+    let output = [];
+    for (const command of inputArray) {
+        switch (command) {
+            case 'add':
+                output.push(count);
                 break;
-            }
+            case 'remove':
+                if (output.length > 0) {
+                    output.pop();
+                }
+                break;
         }
+        count++;
     }
-
-
-    for(let elem of result){
-        resultString += `${elem} `;
+    if (output.length === 0) {
+        console.log('Empty');
     }
-    console.log(resultString);
-   
-    
+    else {
+        console.log(output.join(' '))
+    }
 }
 
 solve(['add', 'add', 'add', 'add']);

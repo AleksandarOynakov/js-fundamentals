@@ -1,7 +1,7 @@
 function solve(inputArray) {
     let step = Number(inputArray.pop());
     let result = "";
-    for (let k = 0; k < inputArray.length - 1; k += step) {
+    for (let k = 0; k < inputArray.length; k += step) {
         result += `${inputArray[k]} `
 
     }
