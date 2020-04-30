@@ -1,81 +1,68 @@
 function solve(commandArray) {
+    let fieldSize = commandArray.shift();
+    let indexesBugs = commandArray.shift().split(' ').map(Number);
     let field = [];
-    for (let i = 0; i < Number(commandArray[0]); i++) {
+
+    //Filling field with 0s
+    counter = 0;
+    while (counter != fieldSize) {
         field.push(0);
+        counter++;
     }
 
-    let bugIndexes = String(commandArray[1]).split(" ");
-    for (let i = 0; i < bugIndexes.length; i++) {
-        field[Number(bugIndexes[i])] = 1;
+    //Setting bugs on the field
+    for (const index of indexesBugs) {
+        if (index >= 0 && index < fieldSize) {
+            field[index] = 1;
+        }
     }
 
-    for (let i = 2; i < commandArray.length; i++) {
-        let commands = String(commandArray[i]).split(" ");
-        let ladyBug = Number(commands[0]);
-        let direction = commands[1];
-        let distance = Number(commands[2]);
+    for (const line of commandArray) {
+        let [bugIndex, direction, distance] = line.split(' ');
+        bugIndex = Number(bugIndex);
+        distance = Number(distance);
 
+        if (field[bugIndex] !== 1 || bugIndex < 0 || bugIndex >= field.length) {
+            continue;
+        }
+        //Making negative dist to positive and swap direction
+        if (distance < 0) {
+            distance = Math.abs(distance);
+            if (direction === 'right') {
+                direction = 'left';
+            }
+            else if (direction === 'left') {
+                direction = right;
+            }
+        }
+
+        field[bugIndex] = 0;
+
+        //Moving the bug
         if (direction === 'right') {
-            for (let j = 0; j < field.length; j++) {
-                if (j === ladyBug) {
-                    field[j] = 0;
-                    if (field[j + distance] === 0) {
-                        field[j + distance] = 1;
-                    }
-                    else if (field[j + distance] === 1) {
-                        while (field[j + distance] === 1) {
-                            distance += distance;
-                        }
-                        if (field[j + distance] === 0) {
-                            field[j + distance] = 1;
-                        }
-
-                    }
-                }
+            let newIndex = bugIndex + distance;
+            if (field[newIndex] === 1) {
+                newIndex += distance;
+            }
+            if (newIndex < field.length) {
+                field[newIndex] = 1;
             }
         }
         else {
-            for (let j = field.length - 1; j >= 0; j--) {
-                if (j === ladyBug) {
-                    field[j] = 0;
-                    if (field[j - distance] === 0) {
-                        field[j - distance] = 1;
-                    }
-                    else if (field[j - distance] === 1) {
-                        while (field[j - distance] === 1) {
-                            distance += distance;
-                        }
-                        if (field[j - distance] === 0) {
-                            field[j - distance] = 1;
-                        }
-                    }
-                }
+            let newIndex = bugIndex - distance;
+            if (field[newIndex] === 1) {
+                newIndex -= distance;
+            }
+            if (newIndex >= 0) {
+                field[newIndex] = 1;
             }
         }
     }
-    let result = "";
-    for(let position of field){
-        result += `${position} `;
-    }
-    console.log(result);
+    console.log(field.join(' '));
 }
 
-solve([3, '0',
 
-    '0 right 1',
-
-    '2 right 1']);
-
-solve([5, '3',
-
-    '3 left 2',
-
-    '1 left -2']);
-
-solve([3, '0 1 2',
-
-    '0 right 1',
-
-    '1 right 1',
+solve([3, '2',
 
     '2 right 1']);
+
