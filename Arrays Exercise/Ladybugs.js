@@ -60,7 +60,7 @@ function solve(commandArray) {
     console.log(result);
 }
 
-solve([3, '0 1',
+solve([3, '0',
 
     '0 right 1',
 

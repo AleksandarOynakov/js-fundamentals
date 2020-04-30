@@ -6,12 +6,11 @@ function solve(firstArray, secondArray) {
         arrSec.push(Number(secondArray[i]));
     }
 
-    
     let eq = true;
     let sum = 0;
     for (let i = 0; i < arrFirst.length; i++) {
         if (arrFirst[i] !== arrSec[i]) {
-            console.log(`Arrays are not identical. Found difference at ${i} index.`)
+            console.log(`Arrays are not identical. Found difference at ${i} index`)
             eq = false;
             break;
         }
