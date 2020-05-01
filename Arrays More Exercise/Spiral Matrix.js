@@ -1,5 +1,5 @@
 function solve(x, y) {
-    
+
     let matrix = [];
     let counter = 1;
     let startRow = 0;
@@ -7,13 +7,12 @@ function solve(x, y) {
     let startCol = 0;
     let endCol = y - 1;
 
-    for(let i = 0 ; i< x;i++){
+    for (let i = 0; i < x; i++) {
         matrix[i] = [];
-        for(let j = 0 ; j < y ; j++){
+        for (let j = 0; j < y; j++) {
             matrix[i][j] = "";
         }
     }
-    console.log(matrix)
 
 
     while (startRow <= endRow && startCol <= endCol) {
@@ -41,13 +40,13 @@ function solve(x, y) {
         startCol++;
     }
 
-    for(let i = 0 ; i< x;i++){
+    for (let i = 0; i < x; i++) {
         let result = "";
-        for(let j = 0 ; j < y ; j++){
-           result += `${matrix[i][j]} `;
+        for (let j = 0; j < y; j++) {
+            result += `${matrix[i][j]} `;
         }
         console.log(result)
     }
 }
 
-solve(5,5);
+solve(5, 5);
