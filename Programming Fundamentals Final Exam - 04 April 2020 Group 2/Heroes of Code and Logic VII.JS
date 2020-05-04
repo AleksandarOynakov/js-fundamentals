@@ -8,6 +8,7 @@ function solve(input) {
         if (hp > 100) {
             hp = 100;
         }
+        
         if (mp > 200) {
             mp = 200;
         }
@@ -78,7 +79,7 @@ function solve(input) {
                 break;
         }
     }
-
+    
     let sorted = Object.entries(register).sort((a, b) => {
         if (b[1].hp === a[1].hp) {
             return (a[0]).localeCompare(b[0]);
@@ -94,6 +95,7 @@ function solve(input) {
         console.log(`MP: ${hero[1].mp}`);
     }
 }
+
 
 solve([
     '4',

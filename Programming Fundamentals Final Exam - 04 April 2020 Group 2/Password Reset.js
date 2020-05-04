@@ -49,6 +49,7 @@ function solve(input) {
     }
 }
 
+
 solve([
     'Siiceercaroetavm!:?:ahsott.:i:nstupmomceqr ',
     'TakeOdd',
