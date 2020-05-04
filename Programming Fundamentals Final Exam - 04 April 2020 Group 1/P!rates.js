@@ -68,7 +68,6 @@ function solve(input) {
             console.log(`${city[0]} -> Population: ${city[1].population} citizens, Gold: ${city[1].gold} kg`)
         }
     }
-
 }
 
 solve([
