@@ -3,7 +3,7 @@ Softuni JavaScript Fundamentals homework assignments.
 
 Topics not included:
 -------------------
-Basic Syntax, Conditional Statements and Loops
+Basic Syntax, Conditional Statements and Loops Lab
 
 Data Types and Variables
 
